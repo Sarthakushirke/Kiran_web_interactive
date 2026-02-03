@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Six Thinking Hats – Interactive Board</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .hats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .hat {
+      border-radius: 10px;
+      padding: 15px;
+      color: #000;
+    }
+
+    .white { background: #ffffff; border: 1px solid #ccc; }
+    .red { background: #ffdddd; }
+    .black { background: #dddddd; }
+    .yellow { background: #fff5cc; }
+    .green { background: #ddffdd; }
+    .blue { background: #dde7ff; }
+
+    .hat h2 {
+      margin-top: 0;
+    }
+
+    .ideas {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .ideas li {
+      background: rgba(255,255,255,0.7);
+      margin: 5px 0;
+      padding: 5px 8px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      margin-top: 8px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      background: #333;
+      color: white;
+    }
+
+    .remove-btn {
+      background: crimson;
+      color: white;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Six Thinking Hats – Interactive Board</h1>
+
+<div class="hats">
+  <div class="hat white" data-hat="White Hat (Facts)">
+    <h2>White Hat (Facts)</h2>
+    <ul class="ideas"></ul>
+    <button class="add-btn">Add idea</button>
+  </div>
+
+  <div class="hat red" data-hat="Red Hat (Feelings)">
+    <h2>Red Hat (Feelings)</h2>
+    <ul class="ideas"></ul>
+    <button class="add-btn">Add idea</button>
+  </div>
+
+  <div class="hat black" data-hat="Black Hat (Risks)">
+    <h2>Black Hat (Risks)</h2>
+    <ul class="ideas"></ul>
+    <button class="add-btn">Add idea</button>
+  </div>
+
+  <div class="hat yellow" data-hat="Yellow Hat (Benefits)">
+    <h2>Yellow Hat (Benefits)</h2>
+    <ul class="ideas"></ul>
+    <button class="add-btn">Add idea</button>
+  </div>
+
+  <div class="hat green" data-hat="Green Hat (Ideas)">
+    <h2>Green Hat (Ideas)</h2>
+    <ul class="ideas"></ul>
+    <button class="add-btn">Add idea</button>
+  </div>
+
+  <div class="hat blue" data-hat="Blue Hat (Process)">
+    <h2>Blue Hat (Process)</h2>
+    <ul class="ideas"></ul>
+    <button class="add-btn">Add idea</button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".add-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const hatDiv = button.parentElement;
+      const ideaText = prompt("Enter your idea:");
+      if (!ideaText) return;
+
+      const li = document.createElement("li");
+      li.textContent = ideaText;
+
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "✕";
+      removeBtn.className = "remove-btn";
+      removeBtn.onclick = () => li.remove();
+
+      li.appendChild(removeBtn);
+      hatDiv.querySelector(".ideas").appendChild(li);
+    });
+  });
+</script>
+
+</body>
+</html>
